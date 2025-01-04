@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "jwt-api", "jwt-api", "{D5EA805C-1CB8-4284-AF73-4B8B7559382D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentitiAPI", "jwt-api\IdentitiAPI\IdentitiAPI.csproj", "{E260F7B3-2C67-4BD2-8A55-2FB135341201}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherAPI", "jwt-api\WeatherAPI\WeatherAPI.csproj", "{27178721-7FF2-4198-B1A2-C8557C1D9D4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "console-app-with-dependency-injection", "console-app-with-dependency-injection\console-app-with-dependency-injection.csproj", "{B8AD4010-8A0B-4BA2-B924-BAD73D4D45A2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E260F7B3-2C67-4BD2-8A55-2FB135341201}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E260F7B3-2C67-4BD2-8A55-2FB135341201}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E260F7B3-2C67-4BD2-8A55-2FB135341201}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E260F7B3-2C67-4BD2-8A55-2FB135341201}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27178721-7FF2-4198-B1A2-C8557C1D9D4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27178721-7FF2-4198-B1A2-C8557C1D9D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27178721-7FF2-4198-B1A2-C8557C1D9D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27178721-7FF2-4198-B1A2-C8557C1D9D4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8AD4010-8A0B-4BA2-B924-BAD73D4D45A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8AD4010-8A0B-4BA2-B924-BAD73D4D45A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8AD4010-8A0B-4BA2-B924-BAD73D4D45A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8AD4010-8A0B-4BA2-B924-BAD73D4D45A2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E260F7B3-2C67-4BD2-8A55-2FB135341201} = {D5EA805C-1CB8-4284-AF73-4B8B7559382D}
+		{27178721-7FF2-4198-B1A2-C8557C1D9D4F} = {D5EA805C-1CB8-4284-AF73-4B8B7559382D}
+	EndGlobalSection
+EndGlobal
