@@ -22,7 +22,8 @@ public class BlockChain
     public IBlock CreateBlock(string data)
     {
         var previousBlock = GetLatestBlock();
-        var block = new Block(previousBlock.Index + 1, DateTime.Now, data, 1,  previousBlock.Hash);
+        var proof = ProofOfWork(previousBlock.Proof);
+        var block = new Block(previousBlock.Index + 1, DateTime.Now, data, proof,  previousBlock.Hash);
         return block;
     }
     
