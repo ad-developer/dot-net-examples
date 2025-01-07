@@ -2,17 +2,16 @@
 using Microsoft.Extensions.DependencyInjection;
 
 /// Create a service collection
+var services = new ServiceCollection();
 
-        var services = new ServiceCollection();
+// Register the calculator service
+services.AddSingleton<ICalculator, Calculator>(); 
 
-        // Register the calculator service
-        services.AddSingleton<ICalculator, Calculator>(); 
+// Build the service provider
+var serviceProvider = services.BuildServiceProvider();
 
-        // Build the service provider
-        var serviceProvider = services.BuildServiceProvider();
+// Get the calculator instance using the service provider
+var calculator = serviceProvider.GetRequiredService<ICalculator>();
 
-        // Get the calculator instance using the service provider
-        var calculator = serviceProvider.GetRequiredService<ICalculator>();
-        
-        // Use the calculator
-        Console.WriteLine(calculator.Add(5, 3)); // Output: 8
+// Use the calculator
+Console.WriteLine(calculator.Add(5, 3)); // Output: 8
