@@ -11,17 +11,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherAPI", "jwt-api\Weath
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "console-app-with-dependency-injection", "console-app-with-dependency-injection\console-app-with-dependency-injection.csproj", "{B8AD4010-8A0B-4BA2-B924-BAD73D4D45A2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "blockchain", "blockchain", "{E87BA968-9486-4F07-8E6A-687A9D933E77}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "block-chain", "block-chain", "{8657C9B3-AC5C-4F21-8DB1-7FD07553EBD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blockchain", "blockchain\blockchain.csproj", "{9F83A3C6-41D3-4902-90CF-3F34310561E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockChainCore", "block-chain\BlockChainCore\BlockChainCore.csproj", "{70B48153-13EC-4A46-9ACA-3B143DD2CDC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bccli", "block-chain\bccli\bccli.csproj", "{A7E43D69-9000-43EF-8786-CDFF0611C4A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E260F7B3-2C67-4BD2-8A55-2FB135341201}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -36,14 +35,22 @@ Global
 		{B8AD4010-8A0B-4BA2-B924-BAD73D4D45A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8AD4010-8A0B-4BA2-B924-BAD73D4D45A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8AD4010-8A0B-4BA2-B924-BAD73D4D45A2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9F83A3C6-41D3-4902-90CF-3F34310561E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F83A3C6-41D3-4902-90CF-3F34310561E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9F83A3C6-41D3-4902-90CF-3F34310561E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F83A3C6-41D3-4902-90CF-3F34310561E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70B48153-13EC-4A46-9ACA-3B143DD2CDC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70B48153-13EC-4A46-9ACA-3B143DD2CDC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70B48153-13EC-4A46-9ACA-3B143DD2CDC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70B48153-13EC-4A46-9ACA-3B143DD2CDC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7E43D69-9000-43EF-8786-CDFF0611C4A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7E43D69-9000-43EF-8786-CDFF0611C4A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7E43D69-9000-43EF-8786-CDFF0611C4A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7E43D69-9000-43EF-8786-CDFF0611C4A0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E260F7B3-2C67-4BD2-8A55-2FB135341201} = {D5EA805C-1CB8-4284-AF73-4B8B7559382D}
 		{27178721-7FF2-4198-B1A2-C8557C1D9D4F} = {D5EA805C-1CB8-4284-AF73-4B8B7559382D}
-		{9F83A3C6-41D3-4902-90CF-3F34310561E1} = {E87BA968-9486-4F07-8E6A-687A9D933E77}
+		{70B48153-13EC-4A46-9ACA-3B143DD2CDC0} = {8657C9B3-AC5C-4F21-8DB1-7FD07553EBD5}
+		{A7E43D69-9000-43EF-8786-CDFF0611C4A0} = {8657C9B3-AC5C-4F21-8DB1-7FD07553EBD5}
 	EndGlobalSection
 EndGlobal
