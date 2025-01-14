@@ -28,6 +28,11 @@ public class BlockChain : IBlockChain
         return block;
     }
     
+    /// <summary>
+    /// Adds an existing block to the blockchain.
+    /// </summary>
+    /// <param name="block">The block to be added.</param>
+    /// <exception cref="InvalidOperationException">Thrown when the block's previous hash does not match the hash of the last block in the blockchain.</exception>
     public void AddBlock(IBlock block)
     {
         var previousBlock = _blocks.Last();
@@ -81,5 +86,5 @@ public class BlockChain : IBlockChain
 
         return true;
     }
-
+    
 }
