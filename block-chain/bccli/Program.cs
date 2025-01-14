@@ -69,9 +69,15 @@ try
                 Console.WriteLine(lastJson);
                 continue;
             }
-            if (command.ToLower() == "clear")
+            if (command.Equals("clear", StringComparison.OrdinalIgnoreCase))
             {
                 Console.Clear();
+                continue;
+            }
+            if (command.Equals("valid", StringComparison.OrdinalIgnoreCase))
+            {
+                var isValid = blockChain.IsValid();
+                Console.WriteLine($"Chain is valid: {isValid}");
                 continue;
             }
             if (command.ToLower() == "help")
@@ -80,6 +86,7 @@ try
                 Console.WriteLine("add 'item to add' - add a new block to the chain");
                 Console.WriteLine("showchain - to exit");
                 Console.WriteLine("showlast - to display the last block");
+                Console.WriteLine("valid -  to check if the chain is valid");
                 Console.WriteLine("clear - to clear the console");
                 Console.WriteLine("help - to display this message");
                 continue;
