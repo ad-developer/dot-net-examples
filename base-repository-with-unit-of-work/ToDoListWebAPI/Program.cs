@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddTransient<IToDoListRepository, ToDoListRepository>();
-builder.Services.AddTransient<DbContext, ToDoListDbContext>();
+builder.Services.AddTransient<IToDoListDbContext, ToDoListDbContext>();
 builder.Services.AddDbContext<ToDoListDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
