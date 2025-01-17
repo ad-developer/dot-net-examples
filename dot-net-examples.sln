@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "base-repository-with-unit-o
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseRepositoryWithUnitOfWork", "base-repository-with-unit-of-work\BaseRepositoryWithUnitOfWork\BaseRepositoryWithUnitOfWork.csproj", "{C60BC260-504C-4FE0-9D4B-967ECF9191DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoListWebAPI", "base-repository-with-unit-of-work\ToDoListWebAPI\ToDoListWebAPI.csproj", "{5DBBB252-B374-43CD-B5B9-3240A0B9DDB8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{C60BC260-504C-4FE0-9D4B-967ECF9191DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C60BC260-504C-4FE0-9D4B-967ECF9191DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C60BC260-504C-4FE0-9D4B-967ECF9191DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DBBB252-B374-43CD-B5B9-3240A0B9DDB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DBBB252-B374-43CD-B5B9-3240A0B9DDB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DBBB252-B374-43CD-B5B9-3240A0B9DDB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DBBB252-B374-43CD-B5B9-3240A0B9DDB8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,5 +67,6 @@ Global
 		{70B48153-13EC-4A46-9ACA-3B143DD2CDC0} = {8657C9B3-AC5C-4F21-8DB1-7FD07553EBD5}
 		{A7E43D69-9000-43EF-8786-CDFF0611C4A0} = {8657C9B3-AC5C-4F21-8DB1-7FD07553EBD5}
 		{C60BC260-504C-4FE0-9D4B-967ECF9191DD} = {2E791714-92BC-465E-B2C6-8E183A51E45D}
+		{5DBBB252-B374-43CD-B5B9-3240A0B9DDB8} = {2E791714-92BC-465E-B2C6-8E183A51E45D}
 	EndGlobalSection
 EndGlobal

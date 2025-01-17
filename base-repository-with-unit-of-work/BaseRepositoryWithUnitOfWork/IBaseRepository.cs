@@ -1,4 +1,3 @@
-using System;
 using System.Linq.Expressions;
 
 namespace BaseRepositoryWithUnitOfWork;
@@ -15,11 +14,11 @@ public interface IBaseRepository<TEntity> where TEntity : class
     
     Task<TEntity> GetByIdAsync(int id);
     
-    Task<TEntity> AddAsync(TEntity entity);
+    Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken);
     
-    Task<TEntity> UpdateAsync(TEntity entity);
+    Task<TEntity> UpdateAsync(TEntity entity, CancellationToken cancellationToken);
     
-    Task DeleteAsync(int id);
+    Task DeleteAsync(int id, CancellationToken cancellationToken);
     
    IEnumerable<TEntity> GetAll();
     

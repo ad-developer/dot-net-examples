@@ -10,9 +10,8 @@ public interface IContext
     EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
 
     int SaveChanges();
-
-    Task<int> SaveChangesAsync();
-
+    Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default);
+    
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 
     void Dispose();

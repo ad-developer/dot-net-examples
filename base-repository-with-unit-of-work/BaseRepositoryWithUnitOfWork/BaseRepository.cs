@@ -3,7 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BaseRepositoryWithUnitOfWork;
 
-public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class, IEntity, IDisposable
+public class BaseRepository<TEntity> : IBaseRepository<TEntity>, IDisposable 
+                                        where TEntity : class, IEntity 
 {
     protected readonly IContext _context;
     
@@ -36,29 +37,29 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
     }
     
     public virtual async Task<TEntity> GetByIdAsync(int id)
-    {
+    {    
         return await _dbSet.FindAsync(id);
     }
     
-    public virtual async Task<TEntity> AddAsync(TEntity entity)
+    public virtual async Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         await _dbSet.AddAsync(entity);
-        await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync(cancellationToken);
         return entity;
     }
     
-    public virtual async Task<TEntity> UpdateAsync(TEntity entity)
+    public virtual async Task<TEntity> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         _context.Entry(entity).State = EntityState.Modified;
-        await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync(cancellationToken);
         return entity;
     }
     
-    public virtual async Task DeleteAsync(int id)
+    public virtual async Task DeleteAsync(int id, CancellationToken cancellationToken = default)
     {
         var entity = await GetByIdAsync(id);
         _dbSet.Remove(entity);
-        await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync(cancellationToken);
     }
 
     public virtual IEnumerable<TEntity> GetAll()
