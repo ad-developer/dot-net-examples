@@ -1,7 +1,9 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using BaseRepositoryWithUnitOfWork;
 
 namespace ToDoListWebAPI.Application;
 
+[Table("ToDoListItem", Schema = "dbo")]
 public class ToDoListItem : IEntity
 {
     public int Id { get; set; }
