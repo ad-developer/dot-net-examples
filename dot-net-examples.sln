@@ -24,10 +24,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoListWebAPI", "base-repository-with-unit-of-work\ToDoListWebAPI\ToDoListWebAPI.csproj", "{5DBBB252-B374-43CD-B5B9-3240A0B9DDB8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "configuration", "configuration", "{75721CA3-1A71-4A6B-A466-0B2AD534D766}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurtionExampleWebAPI", "configuration\ConfigurtionExampleWebAPI\ConfigurtionExampleWebAPI.csproj", "{E49D9C22-BBCE-436B-ACFC-4FAB241721E9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "background-worker", "background-worker", "{5648357C-6579-441B-99B8-A3856C93F6F0}"
 	ProjectSection(SolutionItems) = preProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurtionExampleWebAPI", "configuration\ConfigurtionExampleWebAPI\ConfigurtionExampleWebAPI.csproj", "{E49D9C22-BBCE-436B-ACFC-4FAB241721E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundTasksSample", "background-worker\BackgroundTasksSample\BackgroundTasksSample.csproj", "{2D8DDB7E-17F8-4067-80C4-21C40FD47386}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +71,10 @@ Global
 		{E49D9C22-BBCE-436B-ACFC-4FAB241721E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E49D9C22-BBCE-436B-ACFC-4FAB241721E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E49D9C22-BBCE-436B-ACFC-4FAB241721E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D8DDB7E-17F8-4067-80C4-21C40FD47386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D8DDB7E-17F8-4067-80C4-21C40FD47386}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D8DDB7E-17F8-4067-80C4-21C40FD47386}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D8DDB7E-17F8-4067-80C4-21C40FD47386}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,5 +87,6 @@ Global
 		{C60BC260-504C-4FE0-9D4B-967ECF9191DD} = {2E791714-92BC-465E-B2C6-8E183A51E45D}
 		{5DBBB252-B374-43CD-B5B9-3240A0B9DDB8} = {2E791714-92BC-465E-B2C6-8E183A51E45D}
 		{E49D9C22-BBCE-436B-ACFC-4FAB241721E9} = {75721CA3-1A71-4A6B-A466-0B2AD534D766}
+		{2D8DDB7E-17F8-4067-80C4-21C40FD47386} = {5648357C-6579-441B-99B8-A3856C93F6F0}
 	EndGlobalSection
 EndGlobal
