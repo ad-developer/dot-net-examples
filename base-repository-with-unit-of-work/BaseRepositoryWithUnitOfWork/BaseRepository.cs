@@ -10,6 +10,8 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity>, IDisposable
     
     protected readonly DbSet<TEntity> _dbSet;
     
+    public bool SaveChanges { get; set; } = true;
+
     public BaseRepository(IContext context)
     {
         _context = context;
@@ -44,14 +46,21 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity>, IDisposable
     public virtual async Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         await _dbSet.AddAsync(entity);
-        await _context.SaveChangesAsync(cancellationToken);
+        if(SaveChanges)
+        {
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+
         return entity;
     }
     
     public virtual async Task<TEntity> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         _context.Entry(entity).State = EntityState.Modified;
-        await _context.SaveChangesAsync(cancellationToken);
+        if(SaveChanges)
+        {
+            await _context.SaveChangesAsync(cancellationToken);
+        }
         return entity;
     }
     
@@ -59,7 +68,10 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity>, IDisposable
     {
         var entity = await GetByIdAsync(id);
         _dbSet.Remove(entity);
-        await _context.SaveChangesAsync(cancellationToken);
+        if(SaveChanges)
+        {
+            await _context.SaveChangesAsync(cancellationToken);
+        }
     }
 
     public virtual IEnumerable<TEntity> GetAll()
@@ -90,14 +102,20 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity>, IDisposable
     public virtual TEntity Add(TEntity entity)
     {
         _dbSet.Add(entity);
-        _context.SaveChanges();
+        if(SaveChanges)
+        {
+            _context.SaveChanges();
+        }
         return entity;
     }
 
     public virtual TEntity Update(TEntity entity)
     {
         _context.Entry(entity).State = EntityState.Modified;
-        _context.SaveChanges();
+        if(SaveChanges)
+        {
+            _context.SaveChanges();
+        }
         return entity;
     }
 
@@ -105,7 +123,10 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity>, IDisposable
     {
         var entity = GetById(id);
         _dbSet.Remove(entity);
-        _context.SaveChanges();
+        if(SaveChanges)
+        {
+            _context.SaveChanges();
+        }
     }
     
     private bool _disposed = false;
