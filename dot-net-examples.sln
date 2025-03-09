@@ -1,4 +1,4 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
@@ -32,6 +32,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "background-worker", "backgr
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundTasksSample", "background-worker\BackgroundTasksSample\BackgroundTasksSample.csproj", "{2D8DDB7E-17F8-4067-80C4-21C40FD47386}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "command-processor", "command-processor", "{E33100C6-4BF6-4435-8044-30448A3A67B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommanProcessor", "command-processor\CommanProcessor\CommanProcessor.csproj", "{89A65E40-715A-4CDA-9A29-304932DC5D69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +79,10 @@ Global
 		{2D8DDB7E-17F8-4067-80C4-21C40FD47386}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D8DDB7E-17F8-4067-80C4-21C40FD47386}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D8DDB7E-17F8-4067-80C4-21C40FD47386}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89A65E40-715A-4CDA-9A29-304932DC5D69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89A65E40-715A-4CDA-9A29-304932DC5D69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89A65E40-715A-4CDA-9A29-304932DC5D69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89A65E40-715A-4CDA-9A29-304932DC5D69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,5 +96,6 @@ Global
 		{5DBBB252-B374-43CD-B5B9-3240A0B9DDB8} = {2E791714-92BC-465E-B2C6-8E183A51E45D}
 		{E49D9C22-BBCE-436B-ACFC-4FAB241721E9} = {75721CA3-1A71-4A6B-A466-0B2AD534D766}
 		{2D8DDB7E-17F8-4067-80C4-21C40FD47386} = {5648357C-6579-441B-99B8-A3856C93F6F0}
+		{89A65E40-715A-4CDA-9A29-304932DC5D69} = {E33100C6-4BF6-4435-8044-30448A3A67B0}
 	EndGlobalSection
 EndGlobal
