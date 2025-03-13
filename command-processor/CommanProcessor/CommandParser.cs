@@ -1,7 +1,7 @@
 
 using System.ComponentModel;
 
-namespace CommanProcessor;
+namespace CommandProcessor;
 
 public class CommandParser : ICommandParser
 {
