@@ -1,4 +1,4 @@
-namespace CommanProcessor;
+namespace CommandProcessor;
 
 public interface ICommandParser
 {

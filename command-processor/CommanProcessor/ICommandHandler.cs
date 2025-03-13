@@ -1,7 +1,7 @@
-namespace CommanProcessor;
+namespace CommandProcessor;
 
 public interface ICommandHandler
 {
-    public string Name { get; set; }
+    IServiceProvider Services { get; }
     Task HandleAsync(Command command);
 }
