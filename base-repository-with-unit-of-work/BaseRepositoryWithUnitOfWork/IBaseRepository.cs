@@ -2,7 +2,7 @@ using System.Linq.Expressions;
 
 namespace BaseRepositoryWithUnitOfWork;
 
-public interface IBaseRepository<TEntity> where TEntity : class
+public interface IBaseRepository<TEntity, TId> where TEntity : class
 {
     Task<IEnumerable<TEntity>> GetAllAsync();
     
@@ -12,13 +12,13 @@ public interface IBaseRepository<TEntity> where TEntity : class
     
     Task<IEnumerable<TEntity>> GetPagedAsync(Expression<Func<TEntity, bool>> predicate, int pageNumber, int pageSize);
     
-    Task<TEntity> GetByIdAsync(int id);
+    Task<TEntity?> GetByIdAsync(TId id);
     
-    Task<TEntity> AddAsync(TEntity entity,  CancellationToken cancellationToken);
+    Task<TEntity> AddAsync(TEntity entity,  string addedBy, CancellationToken cancellationToken);
     
-    Task<TEntity> UpdateAsync(TEntity entity, CancellationToken cancellationToken);
+    Task<TEntity> UpdateAsync(TEntity entity, string updatedBy, CancellationToken cancellationToken);
     
-    Task DeleteAsync(int id, CancellationToken cancellationToken);
+    Task DeleteAsync(TId id, string deletedBy, CancellationToken cancellationToken);
     
    IEnumerable<TEntity> GetAll();
     
@@ -28,11 +28,11 @@ public interface IBaseRepository<TEntity> where TEntity : class
     
     IEnumerable<TEntity> GetPaged(Expression<Func<TEntity, bool>> predicate, int pageNumber, int pageSize);
     
-    TEntity GetById(int id);
+    TEntity? GetById(TId id);
     
-    TEntity Add(TEntity entity);
+    TEntity Add(TEntity entity, string addedBy);
     
-    TEntity Update(TEntity entity);
+    TEntity Update(TEntity entity, string updatedBy);
     
-    void Delete(int id);
+    void Delete(TId id, string deletedBy);
 }

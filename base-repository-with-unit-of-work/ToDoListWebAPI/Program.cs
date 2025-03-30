@@ -33,7 +33,6 @@ app.UseHttpsRedirection();
 
 app.MapGet("/todolist/gettodolist", (IToDoListRepository repository) =>
 {
-   
     return repository.GetAll();
 })
 .WithName("GEtToDoList");
@@ -44,9 +43,9 @@ app.MapGet("/todolist/gettodoitem/{id}", (int id, IToDoListRepository repository
 })
 .WithName("GetToDoItem");
 
-app.MapPost("/todolist/addtodoitem", (ToDoListItem toDoListItem,  IToDoListRepository repository) =>
+app.MapPost("/todolist/addtodoitem", (ToDoListItem toDoListItem, string addedBy, IToDoListRepository repository) =>
 {
-    return repository.Add(toDoListItem);
+    return repository.Add(toDoListItem, addedBy);
 })
 .WithName("AddToDoItem");
 
