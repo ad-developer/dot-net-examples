@@ -3,49 +3,51 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BaseRepositoryWithUnitOfWork;
 
-public class BaseRepository<TEntity> : IBaseRepository<TEntity>, IDisposable 
-                                        where TEntity : class, IEntity 
+public abstract class BaseRepository<TEntity, TId>(IContext context) : IBaseRepository<TEntity, TId>, IDisposable 
+                                        where TEntity : class, IEntity<TId> 
 {
-    protected readonly IContext _context;
-    
-    protected readonly DbSet<TEntity> _dbSet;
-    
+    protected readonly IContext _context = context;
+
+    public DbSet<TEntity> Entity { get; } = context.Set<TEntity>();
+
     public bool SaveChanges { get; set; } = true;
 
-    public BaseRepository(IContext context)
-    {
-        _context = context;
-        _dbSet = context.Set<TEntity>();
-    }
-    
     public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
     {
-        return await _dbSet.ToListAsync();
+        return await Entity.ToListAsync();
     }
     
     public virtual async Task<IEnumerable<TEntity>> GetAllPagedAsync(int pageNumber, int pageSize)
     {
-        return await _dbSet.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
+        return await Entity.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
     }
     
     public virtual async Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate)
     {
-        return await _dbSet.Where(predicate).ToListAsync();
+        return await Entity.Where(predicate).ToListAsync();
     }
     
     public virtual async Task<IEnumerable<TEntity>> GetPagedAsync(Expression<Func<TEntity, bool>> predicate, int pageNumber, int pageSize)
     {
-        return await _dbSet.Where(predicate).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
+        return await Entity.Where(predicate).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
     }
     
-    public virtual async Task<TEntity> GetByIdAsync(int id)
+    public virtual async Task<TEntity?> GetByIdAsync(TId id)
     {    
-        return await _dbSet.FindAsync(id);
+        ArgumentNullException.ThrowIfNull(id, nameof(id));
+        return await Entity.FindAsync(id);
     }
     
-    public virtual async Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default)
+    public virtual async Task<TEntity> AddAsync(TEntity entity, string addedBy, CancellationToken cancellationToken = default)
     {
-        await _dbSet.AddAsync(entity);
+        ArgumentNullException.ThrowIfNull(entity, nameof(entity));
+        ArgumentException.ThrowIfNullOrEmpty(addedBy, nameof(addedBy));
+
+        entity.AddedBy = addedBy;
+        entity.AddedDateTime = DateTime.UtcNow;
+        entity.IsDeleted = false;
+
+        await Entity.AddAsync(entity);
         if(SaveChanges)
         {
             await _context.SaveChangesAsync(cancellationToken);
@@ -54,8 +56,14 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity>, IDisposable
         return entity;
     }
     
-    public virtual async Task<TEntity> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
+    public virtual async Task<TEntity> UpdateAsync(TEntity entity, string updatedBy, CancellationToken cancellationToken = default)
     {
+        ArgumentNullException.ThrowIfNull(entity, nameof(entity));
+        ArgumentException.ThrowIfNullOrEmpty(updatedBy, nameof(updatedBy));
+        
+        entity.UpdatedBy = updatedBy;
+        entity.UpdatedDateTime = DateTime.UtcNow;
+
         _context.Entry(entity).State = EntityState.Modified;
         if(SaveChanges)
         {
@@ -64,10 +72,21 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity>, IDisposable
         return entity;
     }
     
-    public virtual async Task DeleteAsync(int id, CancellationToken cancellationToken = default)
+    public virtual async Task DeleteAsync(TId id, string deletedBy, CancellationToken cancellationToken = default)
     {
+        ArgumentException.ThrowIfNullOrEmpty(deletedBy, nameof(deletedBy));
+        ArgumentNullException.ThrowIfNull(id, nameof(id));
+        
         var entity = await GetByIdAsync(id);
-        _dbSet.Remove(entity);
+        if (entity is null)
+        {
+            throw new ArgumentNullException(nameof(entity), $"Entity {nameof(entity)}not found");
+        }
+       
+        entity.UpdatedBy = deletedBy;
+        entity.UpdatedDateTime = DateTime.UtcNow;
+        entity.IsDeleted = true;
+       
         if(SaveChanges)
         {
             await _context.SaveChangesAsync(cancellationToken);
@@ -76,32 +95,40 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity>, IDisposable
 
     public virtual IEnumerable<TEntity> GetAll()
     {
-        return _dbSet.ToList();
+        return Entity.ToList();
     }
 
     public virtual IEnumerable<TEntity> GetAllPaged(int pageNumber, int pageSize)
     {
-        return _dbSet.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+        return Entity.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
     }
     
     public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
     {
-        return _dbSet.Where(predicate).ToList();
+        return Entity.Where(predicate).ToList();
     }
 
     public virtual IEnumerable<TEntity> GetPaged(Expression<Func<TEntity, bool>> predicate, int pageNumber, int pageSize)
     {
-        return _dbSet.Where(predicate).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+        return Entity.Where(predicate).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
     }
     
-    public virtual TEntity GetById(int id)
+    public virtual TEntity? GetById(TId id)
     {
-        return _dbSet.Find(id);
+        ArgumentNullException.ThrowIfNull(id, nameof(id));
+        return Entity.Find(id);
     }
 
-    public virtual TEntity Add(TEntity entity)
+    public virtual TEntity Add(TEntity entity, string addedBy)
     {
-        _dbSet.Add(entity);
+        ArgumentNullException.ThrowIfNull(entity, nameof(entity));
+        ArgumentException.ThrowIfNullOrEmpty(addedBy, nameof(addedBy));
+
+        entity.AddedBy = addedBy;
+        entity.AddedDateTime = DateTime.UtcNow;
+        entity.IsDeleted = false;
+
+        Entity.Add(entity);
         if(SaveChanges)
         {
             _context.SaveChanges();
@@ -109,8 +136,14 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity>, IDisposable
         return entity;
     }
 
-    public virtual TEntity Update(TEntity entity)
+    public virtual TEntity Update(TEntity entity, string updatedBy)
     {
+        ArgumentNullException.ThrowIfNull(entity, nameof(entity));
+        ArgumentException.ThrowIfNullOrEmpty(updatedBy, nameof(updatedBy));
+
+        entity.UpdatedBy = updatedBy;
+        entity.UpdatedDateTime = DateTime.UtcNow;
+    
         _context.Entry(entity).State = EntityState.Modified;
         if(SaveChanges)
         {
@@ -119,10 +152,21 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity>, IDisposable
         return entity;
     }
 
-    public virtual void Delete(int id)
+    public virtual void Delete(TId id, string deletedBy)
     {
+        ArgumentException.ThrowIfNullOrEmpty(deletedBy, nameof(deletedBy));
+        ArgumentNullException.ThrowIfNull(id, nameof(id));
+            
         var entity = GetById(id);
-        _dbSet.Remove(entity);
+        if (entity is null)
+        {
+            throw new ArgumentNullException(nameof(entity), $"Entity {nameof(entity)}not found");
+        }
+
+        entity.UpdatedBy = deletedBy;
+        entity.UpdatedDateTime = DateTime.UtcNow;  
+        entity.IsDeleted = true;  
+        
         if(SaveChanges)
         {
             _context.SaveChanges();
