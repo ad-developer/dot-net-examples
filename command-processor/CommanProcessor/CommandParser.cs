@@ -11,13 +11,14 @@ public class CommandParser : ICommandParser
         var parts = command.Split('-');
         Command res;
         
-        if(parts.Length > 1){
-            var name = parts[0].Trim();
-            res = await GenerateCommandAsync(name);
+        if(parts.Length > 1)
+        {
+          res = await GenerateCommandWithOptionsAsync(parts);
         }
         else 
         {
-            res = await GenerateCommandWithOptionsAsync(parts);
+            var name = parts[0].Trim();
+            res = await GenerateCommandAsync(name);
         }
         
         return await Task.FromResult(res);
